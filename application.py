@@ -59,6 +59,8 @@ def index():
         Set['total'] = Set['SUM(qty)']*Set['current_price']
         print(Set['total'])
         TOTAL += Set['total']
+        if Set['SUM(qty)'] <= 0:
+            db.execute('DELETE FROM record WHERE symbol = ?', Set["symbol"])
 
     return render_template("index.html", List=Record, cash=currCash, usd=usd, TOTAL=TOTAL)
 
