@@ -40,9 +40,12 @@ def lookup(symbol):
 
     # Contact API
     try:
+        # https://api.iex.cloud/v1/data/core/quote/nflx?token=API_KEY
         api_key = os.environ.get("API_KEY")
         url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
         response = requests.get(url)
+        print(response)
+        print("**************************")
         response.raise_for_status()
     except requests.RequestException:
         return None
@@ -68,7 +71,7 @@ def isValid(password):
     """Valid Password Checker"""
     # for checking if password length
     # is between 8 and 15
-    if (len(password) < 8 or len(password) > 15):
+    if (len(password) < 6 or len(password) > 15):
         return False
   
     # to check space
